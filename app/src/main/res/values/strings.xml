@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Esqueleto_Placar</string>
+    <string name="semPerLigar">Sua aplicação não tem permissão para ligar</string>
+    <string name="semPerLoca">Sua aplicação não tem acesso à localização</string>
+</resources>
