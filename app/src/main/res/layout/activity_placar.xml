@@ -18,29 +18,61 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvPlacar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="alteraPlacar"
-        android:text="0 X 0"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btSalvarPlacar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/placarA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="updatePlacarA"
+            android:text="20"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:rotation="180"
+            app:layout_constraintBottom_toTopOf="@+id/btSalvarPlacar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.429"
+            app:layout_constraintVertical_bias="0.471"
+            app:layout_constraintEnd_toStartOf="@+id/placarB" />
 
     <TextView
-        android:id="@+id/tvNomePartida2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Partida"
-        android:textSize="34sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/tvPlacar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/vsPlacar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/btSalvarPlacar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintVertical_bias="0.471"
+            app:layout_constraintEnd_toStartOf="@+id/placarB"
+            app:layout_constraintStart_toEndOf="@+id/placarA" />
+
+    <TextView
+            android:id="@+id/placarB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="updatePlacarB"
+            android:text="20"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/btSalvarPlacar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.751"
+            app:layout_constraintVertical_bias="0.471" />
+
+    <TextView
+            android:id="@+id/tvNomePartida2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Partida"
+            android:textSize="34sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toTopOf="@+id/vsPlacar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btVerJogos"

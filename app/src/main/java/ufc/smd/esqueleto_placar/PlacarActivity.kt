@@ -23,29 +23,42 @@ import java.nio.charset.StandardCharsets
 
 class PlacarActivity : AppCompatActivity() {
     lateinit var placar:Placar
-    lateinit var tvResultadoJogo: TextView
-    var game =0
+    lateinit var placarB: TextView
+    lateinit var placarA: TextView
+
+    var pontoA = 20
+    var pontoB = 20
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_placar)
         placar= getIntent().getExtras()?.getSerializable("placar") as Placar
-        tvResultadoJogo= findViewById(R.id.tvPlacar)
+        placarA= findViewById(R.id.placarA)
+        placarB = findViewById(R.id.placarB)
+
         //Mudar o nome da partida
         val tvNomePartida=findViewById(R.id.tvNomePartida2) as TextView
         tvNomePartida.text=placar.nome_partida
         ultimoJogos()
     }
 
-    fun alteraPlacar (v:View){
-        game++
-        if ((game % 2) != 0) {
-            placar.resultado = ""+game+" vs "+ (game-1)
-        }else{
-            placar.resultado = ""+(game-1)+" vs "+ (game-1)
-            vibrar(v)
+    fun alteraPlacar (v:View, placarTextView: TextView){
+        if (placarTextView == placarA && pontoA > 0) {
+            placarA.text = (--pontoA).toString()
+        } else if (placarTextView == placarB && pontoB >0) {
+            placarB.text = (--pontoB).toString()
         }
-        tvResultadoJogo.text=placar.resultado
     }
+
+    fun updatePlacarA(v: View) {
+        alteraPlacar(v, placarA)
+    }
+
+    fun updatePlacarB(v: View) {
+        alteraPlacar(v, placarB)
+    }
+
+
 
 
     fun vibrar (v:View){
