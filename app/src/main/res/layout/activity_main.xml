@@ -4,36 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1b1b1b"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btIniciar"
-        android:layout_width="146dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="307dp"
-        android:onClick="openConfig"
-        android:text="Jogar"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:contentDescription="@string/imagem_de_cabecalho"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btPreviousGame"
-        android:layout_width="146dp"
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/wizardry"
+        android:textColor="#FFFFFF"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="@string/mtg_life_counter"
+        android:textColor="#FFFFFF"
+        android:textSize="27sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <TextView
+        android:id="@+id/btIniciar"
+        android:layout_width="200dp"
         android:layout_height="60dp"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/gradient_button"
+        android:gravity="center"
+        android:onClick="openConfig"
+        android:text="@string/start"
+        android:textColor="#FFFFFF"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle" />
+
+    <TextView
+        android:id="@+id/btPreviousGame"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background_button_historico"
+        android:gravity="center"
         android:onClick="openPreviusGames"
-        android:text="Histórico"
+        android:text="@string/game_history"
+        android:textColor="#FFFFFF"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btIniciar" />
 
-    <Button
-        android:id="@+id/btNonSense"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="openPermission"
-        android:text="Permission"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

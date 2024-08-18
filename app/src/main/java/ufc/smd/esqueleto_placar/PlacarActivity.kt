@@ -37,8 +37,6 @@ class PlacarActivity : AppCompatActivity() {
         placarB = findViewById(R.id.placarB)
 
         //Mudar o nome da partida
-        val tvNomePartida=findViewById(R.id.tvNomePartida2) as TextView
-        tvNomePartida.text=placar.nome_partida
         ultimoJogos()
     }
 

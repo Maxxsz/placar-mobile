@@ -2,4 +2,13 @@
     <string name="app_name">Esqueleto_Placar</string>
     <string name="semPerLigar">Sua aplicação não tem permissão para ligar</string>
     <string name="semPerLoca">Sua aplicação não tem acesso à localização</string>
+    <string name="nome_da_partida">Nome da Partida</string>
+    <string name="name">Name</string>
+    <string name="cronometro">Cronômetro</string>
+    <string name="iniciar_jogo">Iniciar Jogo</string>
+    <string name="imagem_de_cabecalho">Imagem de cabeçalho</string>
+    <string name="wizardry">WIZARDRY</string>
+    <string name="mtg_life_counter">MTG Life Counter</string>
+    <string name="start">Start</string>
+    <string name="game_history">Game History</string>
 </resources>
