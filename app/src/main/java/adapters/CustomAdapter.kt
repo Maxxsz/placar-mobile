@@ -14,7 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import data.Placar
 import ufc.smd.esqueleto_placar.R
 
-class CustomAdapter(private val mList: List<Placar>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private val mList: List<String>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
 
     // Criação de Novos ViewHolders
@@ -27,28 +27,21 @@ class CustomAdapter(private val mList: List<Placar>) : RecyclerView.Adapter<Cust
 
     // Ligando o Recycler view a um View Holder
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        val imageView: ImageView = ItemView.findViewById(R.id.imageview)
-        val tvNomePartida: TextView = ItemView.findViewById(R.id.tvNomePartida)
-        val tvResultadoJogo: TextView = ItemView.findViewById(R.id.tvResultadoJogo)
-        val lnCell: LinearLayout = ItemView.findViewById(R.id.lnCell)
+        val tvResultadoJogo: TextView = itemView.findViewById(R.id.tvResultadoJogo)
+        val lnCell: LinearLayout = itemView.findViewById(R.id.lnCell)
     }
 
     // faz o bind de uma ViewHolder a um Objeto da Lista
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val placarAnterior = mList[position]
+        val resultado = mList[position]
 
-        //alimentando os elementos a partir do objeto placar
-        holder.tvNomePartida.text = placarAnterior.nome_partida
-        holder.tvResultadoJogo.text = placarAnterior.resultado
+        // Alimentando os elementos a partir do resultado
+        holder.tvResultadoJogo.text = resultado
 
-        holder.lnCell.setOnClickListener{
-            val duration= Snackbar.LENGTH_LONG
-            val text= placarAnterior.resultadoLongo
-
-            val snack= Snackbar.make(holder.lnCell,text,duration)
+        holder.lnCell.setOnClickListener {
+            val snack = Snackbar.make(holder.lnCell, resultado, Snackbar.LENGTH_LONG)
             snack.show()
-
         }
     }
 

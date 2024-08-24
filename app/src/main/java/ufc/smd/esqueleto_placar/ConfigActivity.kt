@@ -12,57 +12,52 @@ import android.widget.Switch
 import data.Placar
 
 class ConfigActivity : AppCompatActivity() {
-    var placar: Placar= Placar("Jogo sem Config","0x0", "20/05/20 10h",false)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config)
-       // placar= getIntent().getExtras()?.getSerializable("placar") as Placar
-        //Log.v("PDM22",placar.nome_partida)
-        //Log.v("PDM22",placar.has_timer.toString())
-
 
         openConfig()
         initInterface()
-
     }
-    fun saveConfig(){
+
+    private fun saveConfig() {
         val sharedFilename = "configPlacar"
-        val sp:SharedPreferences = getSharedPreferences(sharedFilename,Context.MODE_PRIVATE)
-        var edShared = sp.edit()
+        val sp: SharedPreferences = getSharedPreferences(sharedFilename, Context.MODE_PRIVATE)
+        val edShared = sp.edit()
 
+        val pontosDeVida = findViewById<EditText>(R.id.editPV).text.toString().toIntOrNull() ?: 20
+        val nomeJogadorA = findViewById<EditText>(R.id.editTextNomeA).text.toString()
+        val nomeJogadorB = findViewById<EditText>(R.id.editTextNomeB).text.toString()
 
-        edShared.putString("matchname",placar.nome_partida)
-        edShared.putBoolean("has_timer",placar.has_timer)
-        edShared.commit()
+        edShared.putInt("pontosDeVida", pontosDeVida)
+        edShared.putString("nomeJogadorA", nomeJogadorA)
+        edShared.putString("nomeJogadorB", nomeJogadorB)
+        edShared.apply()
     }
-    fun openConfig()
-    {
+
+    private fun openConfig() {
         val sharedFilename = "configPlacar"
-        val sp:SharedPreferences = getSharedPreferences(sharedFilename,Context.MODE_PRIVATE)
-        placar.nome_partida=sp.getString("matchname","Jogo Padrão").toString()
-        placar.has_timer=sp.getBoolean("has_timer",false)
+        val sp: SharedPreferences = getSharedPreferences(sharedFilename, Context.MODE_PRIVATE)
 
-    }
-    fun initInterface(){
-        val tv= findViewById<EditText>(R.id.editTextGameName)
-        tv.setText(placar.nome_partida)
-        val sw= findViewById<Switch>(R.id.swTimer)
-        sw.isChecked=placar.has_timer
+        val pontosDeVida = sp.getInt("pontosDeVida", 20)
+
+        findViewById<EditText>(R.id.editPV).setText(pontosDeVida.toString())
     }
 
-    fun updatePlacarConfig(){
-        val tv= findViewById<EditText>(R.id.editTextGameName)
-        val sw= findViewById<Switch>(R.id.swTimer)
-        placar.nome_partida= tv.text.toString()
-        placar.has_timer=sw.isChecked
-    }
+    fun openPlacar(v: View) {
+        saveConfig()
+        val nomeJogadorA = findViewById<EditText>(R.id.editTextNomeA).text.toString()
+        val nomeJogadorB = findViewById<EditText>(R.id.editTextNomeB).text.toString()
 
-    fun openPlacar(v: View){ //Executa ao click do Iniciar Jogo
-        updatePlacarConfig() //Pega da Interface e joga no placar
-        saveConfig() //Salva no Shared preferences
-        val intent = Intent(this, PlacarActivity::class.java).apply{
-            putExtra("placar", placar)
+        val intent = Intent(this, PlacarActivity::class.java).apply {
+            putExtra("pontosDeVida", findViewById<EditText>(R.id.editPV).text.toString().toIntOrNull() ?: 20)
+            putExtra("nomeJogadorA", nomeJogadorA)
+            putExtra("nomeJogadorB", nomeJogadorB)
         }
         startActivity(intent)
+    }
+
+    private fun initInterface() {
+        val tv = findViewById<EditText>(R.id.editPV)
     }
 }

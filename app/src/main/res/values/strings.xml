@@ -2,7 +2,7 @@
     <string name="app_name">Esqueleto_Placar</string>
     <string name="semPerLigar">Sua aplicação não tem permissão para ligar</string>
     <string name="semPerLoca">Sua aplicação não tem acesso à localização</string>
-    <string name="nome_da_partida">Nome da Partida</string>
+    <string name="pv">Pontos de vida</string>
     <string name="name">Name</string>
     <string name="cronometro">Cronômetro</string>
     <string name="iniciar_jogo">Iniciar Jogo</string>
