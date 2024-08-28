@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="icon_a">Icon A</string>
+    <string name="icon_b">Icon B</string>
+    <string name="_20">20</string>
+    <string name="menu">Menu</string>
+    <string name="refazer">Refazer</string>
+    <string name="desfazer">Desfazer</string>
+    <string name="player_1">Player 1</string>
+    <string name="player_2">Player 2</string>
+    <string name="_00_00">00:00</string>
+    <string name="nome_do_jogador_a">Nome do Jogador A</string>
+    <string name="nome_do_jogador_b">Nome do Jogador B</string>
+</resources>

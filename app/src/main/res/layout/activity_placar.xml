@@ -1,147 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#1b1b1b"
-            tools:context=".PlacarActivity">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1b1b1b"
+    tools:context=".PlacarActivity">
 
-        <View
-                android:id="@+id/topHalf"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="#FFC0CB"
-                app:layout_constraintBottom_toTopOf="@+id/centerLine"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tvTimerTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:rotation="180"
+        android:text="@string/_00_00"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-                android:id="@+id/bottomHalf"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="#87CEFA"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/centerLine" />
+    <TextView
+        android:id="@+id/tvTimerBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/_00_00"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <View
-                android:id="@+id/centerLine"
-                android:layout_width="0dp"
-                android:layout_height="4dp"
-                android:background="#000000"
-                app:layout_constraintBottom_toTopOf="@+id/bottomHalf"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/topHalf" />
+    <View
+        android:id="@+id/topHalf"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="#ff014a"
+        android:clickable="true"
+        android:onClick="updatePlacarA"
+        app:layout_constraintBottom_toTopOf="@+id/centerLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTimerTop"
+        android:focusable="true" />
 
-        <TextView
-                android:id="@+id/tvTimerTop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="00:00"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:rotation="180"
-                android:layout_marginTop="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="MissingConstraints"    />
+    <View
+        android:id="@+id/bottomHalf"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:background="#2c38ee"
+        android:clickable="true"
+        android:onClick="updatePlacarB"
+        app:layout_constraintBottom_toTopOf="@+id/tvTimerBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/centerLine"
+        android:focusable="true" />
 
-        <TextView
-                android:id="@+id/tvTimerBottom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="00:00"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="MissingConstraints" />
+    <View
+        android:id="@+id/centerLine"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/bottomHalf"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topHalf" />
 
-        <TextView
-                android:id="@+id/placarA"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/player_indicator_pink"
-                android:clickable="true"
-                android:onClick="updatePlacarA"
-                android:focusable="true"
-                android:gravity="center"
-                android:padding="60dp"
-                android:rotation="180"
-                android:text="20"
-                android:textSize="48sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/topHalf"
-                app:layout_constraintEnd_toEndOf="@+id/topHalf"
-                app:layout_constraintStart_toStartOf="@+id/topHalf"
-                app:layout_constraintTop_toTopOf="@+id/topHalf" />
+    <TextView
+        android:id="@+id/placarA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:rotation="180"
+        android:text="@string/_20"
+        android:textColor="@color/white"
+        android:textSize="120sp"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:onClick="updatePlacarA"
+        app:layout_constraintEnd_toEndOf="@+id/iconA"
+        app:layout_constraintStart_toStartOf="@+id/iconA"
+        app:layout_constraintTop_toBottomOf="@+id/iconA"
+        android:focusable="true" />
 
-        <TextView
-                android:id="@+id/placarB"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/player_indicator_blue"
-                android:clickable="true"
-                android:onClick="updatePlacarB"
-                android:focusable="true"
-                android:gravity="center"
-                android:padding="60dp"
-                android:text="20"
-                android:textSize="48sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/bottomHalf"
-                app:layout_constraintEnd_toEndOf="@+id/bottomHalf"
-                app:layout_constraintStart_toStartOf="@+id/bottomHalf"
-                app:layout_constraintTop_toTopOf="@+id/bottomHalf" />
+    <TextView
+        android:id="@+id/playerA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:rotation="180"
+        android:text="@string/player_2"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/placarA"
+        app:layout_constraintStart_toStartOf="@+id/placarA"
+        app:layout_constraintTop_toBottomOf="@+id/placarA" />
 
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Desfazer"
+    <ImageView
+        android:id="@+id/iconA"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/icon_a"
+        android:rotation="180"
+        android:src="@drawable/ic_heart"
+        app:layout_constraintEnd_toEndOf="@+id/topHalf"
+        app:layout_constraintStart_toStartOf="@+id/topHalf"
+        app:layout_constraintTop_toTopOf="@+id/topHalf"
+        app:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/playerB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/player_1"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/placarB"
+        app:layout_constraintEnd_toEndOf="@+id/placarB"
+        app:layout_constraintStart_toStartOf="@+id/placarB" />
+
+    <TextView
+        android:id="@+id/placarB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/_20"
+        android:textColor="@color/white"
+        android:clickable="true"
+        android:onClick="updatePlacarB"
+        android:textSize="120sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/iconB"
+        app:layout_constraintEnd_toEndOf="@+id/bottomHalf"
+        app:layout_constraintStart_toStartOf="@+id/bottomHalf"
+        android:focusable="true" />
+
+    <ImageView
+        android:id="@+id/iconB"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/icon_b"
+        android:src="@drawable/ic_heart"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomHalf"
+        app:layout_constraintEnd_toEndOf="@+id/bottomHalf"
+        app:layout_constraintStart_toStartOf="@+id/bottomHalf"
+        app:tint="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/buttonGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/bottomHalf"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/buttonUndo"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:onClick="desfazerUltimaAlteracao"
-            tools:ignore="MissingConstraints" />
+            android:layout_marginHorizontal="15dp"
+            android:background="@drawable/hexagon_background"
+            android:contentDescription="@string/desfazer"
+            android:padding="8dp" />
 
-        <!--    <Button-->
-        <!--        android:id="@+id/btSalvarPlacar"-->
-        <!--        android:layout_width="0dp"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:onClick="saveGame"-->
-        <!--        android:text="Salvar Placar"-->
-        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--        app:layout_constraintEnd_toEndOf="parent"-->
-        <!--        app:layout_constraintStart_toStartOf="parent"-->
-        <!--        app:layout_constraintTop_toBottomOf="@+id/btVerJogos"-->
-        <!--        android:background="@drawable/hexagon_button" />-->
+        <ImageView
+            android:id="@+id/buttonMenu"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="15dp"
+            android:background="@drawable/hexagon_background"
+            android:contentDescription="@string/menu"
+            android:padding="8dp"
+            android:src="@drawable/ic_menu" />
 
-        <!--    <Button-->
-        <!--        android:id="@+id/btVerJogos"-->
-        <!--        android:layout_width="0dp"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:onClick="lerUltimosJogos"-->
-        <!--        android:text="Resultado Anterior"-->
-        <!--        app:layout_constraintBottom_toTopOf="parent"-->
-        <!--        app:layout_constraintEnd_toEndOf="parent"-->
-        <!--        app:layout_constraintStart_toStartOf="parent"-->
-        <!--        app:layout_constraintTop_toBottomOf="@+id/tvTimerBottom"-->
-        <!--        android:background="@drawable/hexagon_button" />-->
+        <ImageView
+            android:id="@+id/buttonRedo"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="15dp"
+            android:background="@drawable/hexagon_background"
+            android:contentDescription="@string/refazer"
+            android:padding="8dp"
+            android:src="@drawable/ic_undo" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
