@@ -3,13 +3,10 @@ package ufc.smd.esqueleto_placar
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.EditText
-import android.widget.Switch
-import data.Placar
+import androidx.appcompat.app.AppCompatActivity
 
 class ConfigActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,8 +43,9 @@ class ConfigActivity : AppCompatActivity() {
 
     fun openPlacar(v: View) {
         saveConfig()
-        val nomeJogadorA = findViewById<EditText>(R.id.editTextNomeA).text.toString()
-        val nomeJogadorB = findViewById<EditText>(R.id.editTextNomeB).text.toString()
+        val nomeJogadorA = findViewById<EditText>(R.id.editTextNomeA).text.toString().takeIf { it.isNotEmpty() }
+        val nomeJogadorB = findViewById<EditText>(R.id.editTextNomeB).text.toString().takeIf { it.isNotEmpty() }
+
 
         val intent = Intent(this, PlacarActivity::class.java).apply {
             putExtra("pontosDeVida", findViewById<EditText>(R.id.editPV).text.toString().toIntOrNull() ?: 20)

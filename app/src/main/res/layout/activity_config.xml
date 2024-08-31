@@ -8,10 +8,10 @@
     tools:context=".ConfigActivity">
 
     <TextView
-        android:id="@+id/tvPontosDeVida"
+        android:id="@+id/tvConfigInicial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pv"
+        android:text="@string/initialConfig"
         android:textColor="#FFFFFF"
         android:textSize="31sp"
         android:textStyle="bold"
@@ -59,7 +59,7 @@
         android:backgroundTint="#626262"
         android:ems="8"
         android:inputType="number"
-        android:text="@string/_20"
+        android:text="@string/initialPV"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btInitGame"
         app:layout_constraintEnd_toEndOf="parent"

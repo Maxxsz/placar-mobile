@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Esqueleto_Placar</string>
+    <string name="app_name">Wizardry</string>
     <string name="semPerLigar">Sua aplicação não tem permissão para ligar</string>
     <string name="semPerLoca">Sua aplicação não tem acesso à localização</string>
     <string name="pv">Pontos de vida</string>
@@ -14,6 +14,7 @@
     <string name="icon_a">Icon A</string>
     <string name="icon_b">Icon B</string>
     <string name="_20">20</string>
+    <string name="_2">2</string>
     <string name="menu">Menu</string>
     <string name="refazer">Refazer</string>
     <string name="desfazer">Desfazer</string>
@@ -22,4 +23,6 @@
     <string name="_00_00">00:00</string>
     <string name="nome_do_jogador_a">Nome do Jogador A</string>
     <string name="nome_do_jogador_b">Nome do Jogador B</string>
+    <string name="initialConfig">Configuração inicial</string>
+    <string name="initialPV">PV Inicial</string>
 </resources>

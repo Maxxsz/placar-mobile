@@ -95,7 +95,7 @@
         android:focusable="true" />
 
     <TextView
-        android:id="@+id/playerA"
+        android:id="@+id/playerB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -122,7 +122,7 @@
         app:tint="@color/white" />
 
     <TextView
-        android:id="@+id/playerB"
+        android:id="@+id/playerA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -180,7 +180,8 @@
             android:layout_marginHorizontal="15dp"
             android:background="@drawable/hexagon_background"
             android:contentDescription="@string/desfazer"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:src="@drawable/undo" />
 
         <ImageView
             android:id="@+id/buttonMenu"
@@ -188,6 +189,7 @@
             android:layout_height="48dp"
             android:layout_marginHorizontal="15dp"
             android:background="@drawable/hexagon_background"
+            android:onClick="returnToMainActivity"
             android:contentDescription="@string/menu"
             android:padding="8dp"
             android:src="@drawable/ic_menu" />
@@ -198,6 +200,7 @@
             android:layout_height="48dp"
             android:layout_marginHorizontal="15dp"
             android:background="@drawable/hexagon_background"
+            android:onClick="restartGame"
             android:contentDescription="@string/refazer"
             android:padding="8dp"
             android:src="@drawable/ic_undo" />
