@@ -203,7 +203,7 @@
             android:onClick="restartGame"
             android:contentDescription="@string/refazer"
             android:padding="8dp"
-            android:src="@drawable/ic_undo" />
+            android:src="@drawable/ic_reiniciar" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
