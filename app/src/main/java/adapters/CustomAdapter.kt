@@ -1,16 +1,17 @@
 package adapters
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import data.GameResult
 import ufc.smd.esqueleto_placar.R
 
-class CustomAdapter(private val mList: List<GameResult>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private val context: Context, private val mList: List<GameResult>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
 
     // Criação de Novos ViewHolders
@@ -26,7 +27,7 @@ class CustomAdapter(private val mList: List<GameResult>) : RecyclerView.Adapter<
         val tvResultadoJogo: TextView = itemView.findViewById(R.id.tvResultadoJogo)
         val tvGameDate: TextView = itemView.findViewById(R.id.tvGameDate)
         val tvHeart: TextView = itemView.findViewById(R.id.tvHeartCount)
-        val lnCell: LinearLayout = itemView.findViewById(R.id.lnCell)
+        val tvAddress: TextView = itemView.findViewById(R.id.tvAddress)
     }
 
     // faz o bind de uma ViewHolder a um Objeto da Lista
@@ -37,10 +38,19 @@ class CustomAdapter(private val mList: List<GameResult>) : RecyclerView.Adapter<
         holder.tvGameDate.text = gameResult.dataHora
         holder.tvHeart.text = gameResult.heartCount
 
-        holder.lnCell.setOnClickListener {
-            val snack = Snackbar.make(holder.lnCell, "${gameResult.result} - ${gameResult.heartCount}", Snackbar.LENGTH_LONG)
-            snack.show()
+        if (gameResult.latitude != null && gameResult.longitude != null) {
+            holder.tvAddress.visibility = View.VISIBLE
+
+            holder.tvAddress.setOnClickListener {
+                val uri = "geo:${gameResult.latitude},${gameResult.longitude}?q=${gameResult.latitude},${gameResult.longitude}"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+                intent.setPackage("com.google.android.apps.maps")
+                context.startActivity(intent)
+            }
+        } else {
+            holder.tvAddress.visibility = View.GONE
         }
+
     }
 
     override fun getItemCount(): Int {

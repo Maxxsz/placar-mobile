@@ -1,9 +1,14 @@
 package ufc.smd.esqueleto_placar
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.location.Geocoder
+import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -11,7 +16,10 @@ import android.os.Vibrator
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.getSystemService
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import data.GameResult
@@ -29,10 +37,13 @@ import java.util.Stack
 class PlacarActivity : AppCompatActivity() {
     private lateinit var placarATextView: TextView
     private lateinit var placarBTextView: TextView
+
     private lateinit var playerATextView: TextView
     private lateinit var playerBTextView: TextView
     private lateinit var cronometroTop: TextView
     private lateinit var cronometroBot: TextView
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var currentLocation: Location? = null
     private var gameOver: Boolean = false
 
     private val placarAStack = Stack<Int>()
@@ -47,6 +58,8 @@ class PlacarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_placar)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        checkLocationPermission()
 
         placarATextView = findViewById(R.id.placarA)
         placarBTextView = findViewById(R.id.placarB)
@@ -71,6 +84,55 @@ class PlacarActivity : AppCompatActivity() {
         placarATextView.text = pontosVidaA.toString()
         placarBTextView.text = pontosVidaB.toString()
         iniciarCronometro()
+    }
+
+    private fun checkLocationPermission() {
+        if (ActivityCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1
+            )
+        } else {
+            getLocation()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1 && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            getLocation()
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getLocation() {
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    currentLocation = location
+                }
+            }
+    }
+
+    fun getAddressFromLocation(latitude: Double, longitude: Double): String {
+        val geocoder = Geocoder(this, Locale.getDefault())
+        return try {
+            val addresses = geocoder.getFromLocation(latitude, longitude, 1)
+
+            if (!addresses.isNullOrEmpty()) {
+                val address = addresses[0]
+                "${address.subAdminArea}, ${address.adminArea}"
+            } else {
+                "Endereço não encontrado"
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            "Erro ao obter endereço"
+        }
     }
 
     private fun iniciarCronometro() {
@@ -289,7 +351,7 @@ class PlacarActivity : AppCompatActivity() {
         saveGameResults(currentResults)
     }
 
-    fun finishGame(vencedor: String) {
+    private fun finishGame(vencedor: String) {
         val pontosVida = intent.getIntExtra("pontosDeVida", 20)
         val duracao = System.currentTimeMillis() - tempoInicial
         val dateFormat = SimpleDateFormat("MMM dd, HH:mm", Locale.getDefault())
@@ -300,9 +362,16 @@ class PlacarActivity : AppCompatActivity() {
         val remainingSeconds = seconds % 60
         val formattedDuration = String.format("%02d:%02d", minutes, remainingSeconds)
 
+        val latitude = currentLocation?.latitude
+        val longitude = currentLocation?.longitude
 
-        val resultText = "$vencedor venceu! Duração: $formattedDuration"
-        val gameResult = GameResult(resultText, formattedDuration, pontosVida.toString(), dataHora)
+        var locationText = "Localização não disponível"
+        if (latitude != null && longitude != null) {
+            locationText = getAddressFromLocation(latitude, longitude)
+        }
+
+        val resultText = "$vencedor venceu! Duração: $formattedDuration $locationText"
+        val gameResult = GameResult(resultText, formattedDuration, pontosVida.toString(), dataHora, latitude, longitude)
 
         addGameResult(gameResult)
     }
